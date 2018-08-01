@@ -1,0 +1,57 @@
+import discord
+from discord.ext import commands
+from discord.ext.commands import Bot
+import asyncio
+import time
+import random
+
+bot = commands.Bot(command_prefix='!')
+bot.remove_command('help')
+
+@bot.event
+async def on_ready():
+        print("Island-Bot loading in 5 seconds...")
+        time.sleep(2)
+        print("Island-Bot loading in 3 seconds...")
+        time.sleep(1)
+        print("Island-Bot loading in 2 seconds...")
+        time.sleep(1)
+        print("Island-Bot loading in 1 seconds...")
+        time.sleep(1)
+        
+        print("Island-Bot V 1.0 Ready")
+       
+   
+
+@bot.command(pass_context=True)
+async def info(ctx, user: discord.Member):
+    await bot.say("The users name is: {}".format(user.name))
+    await bot.say("The users ID is: {}".format(user.id))
+    await bot.say("The users status is: {}".format(user.status))
+    await bot.say("The users highest role is: {}".format(user.top_role))
+    await bot.say("The user joined at: {}".format(user.joined_at))
+
+@bot.command(pass_context=True)
+async def kick(ctx, user: discord.Member):
+    await bot.say(":boot: Cya, {}. Ya loser!".format(user.name))
+    await bot.kick(user)
+
+@bot.command(pass_context=True)
+async def work(ctx):
+        
+        author = ctx.message.author
+        
+        embed = discord.Embed(
+                colour = discord.Colour.blue()
+                )
+
+        embed.set_author(name='Island work to be done')
+        embed.add_field(name=':lock:**Season 2** __has not__ been released yet.', value=':pushpin: **No work to be done right now**', inline=False)
+
+        await bot.say(author, embed=embed)
+        
+    
+        
+
+     
+bot.run("NDczMDgzMjA1OTg2MDI1NDcz.Dj8wsw.NCcY-pRdb1AdPflRcpj9BKzPLTk")
